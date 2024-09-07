@@ -1,0 +1,20 @@
+[
+  {
+    "title": "Understanding Python Dictionaries",
+    "content": "Python dictionaries are unordered collections that store data in key-value pairs. They are mutable and allow for fast lookup of values by their keys.",
+    "code": "# Creating a dictionary\ndict_example = {'name': 'Alice', 'age': 25, 'city': 'New York'}\n\n# Accessing values by key\nprint(dict_example['name'])  # Output: Alice\n\n# Modifying values\ndict_example['age'] = 26\nprint(dict_example)  # Output: {'name': 'Alice', 'age': 26, 'city': 'New York'}\n\n# Adding a new key-value pair\ndict_example['profession'] = 'Engineer'\nprint(dict_example)  # Output: {'name': 'Alice', 'age': 26, 'city': 'New York', 'profession': 'Engineer'}",
+    "output": "Alice\n{'name': 'Alice', 'age': 26, 'city': 'New York'}\n{'name': 'Alice', 'age': 26, 'city': 'New York', 'profession': 'Engineer'}"
+  },
+  {
+    "title": "Understanding Python Dictionaries",
+    "content": "Python dictionaries are unordered collections that store data in key-value pairs. They are mutable and allow for fast lookup of values by their keys.",
+    "code": "# Creating a dictionary\ndict_example = {'name': 'Alice', 'age': 25, 'city': 'New York'}\n\n# Accessing values by key\nprint(dict_example['name'])  # Output: Alice\n\n# Modifying values\ndict_example['age'] = 26\nprint(dict_example)  # Output: {'name': 'Alice', 'age': 26, 'city': 'New York'}\n\n# Adding a new key-value pair\ndict_example['profession'] = 'Engineer'\nprint(dict_example)  # Output: {'name': 'Alice', 'age': 26, 'city': 'New York', 'profession': 'Engineer'}",
+    "output": "Alice\n{'name': 'Alice', 'age': 26, 'city': 'New York'}\n{'name': 'Alice', 'age': 26, 'city': 'New York', 'profession': 'Engineer'}"
+  },
+  {
+    "title": "Understanding Python Dictionaries",
+    "content": "Python dictionaries are unordered collections that store data in key-value pairs. They are mutable and allow for fast lookup of values by their keys.",
+    "code": "# Creating a dictionary\ndict_example = {'name': 'Alice', 'age': 25, 'city': 'New York'}\n\n# Accessing values by key\nprint(dict_example['name'])  # Output: Alice\n\n# Modifying values\ndict_example['age'] = 26\nprint(dict_example)  # Output: {'name': 'Alice', 'age': 26, 'city': 'New York'}\n\n# Adding a new key-value pair\ndict_example['profession'] = 'Engineer'\nprint(dict_example)  # Output: {'name': 'Alice', 'age': 26, 'city': 'New York', 'profession': 'Engineer'}",
+    "output": "Alice\n{'name': 'Alice', 'age': 26, 'city': 'New York'}\n{'name': 'Alice', 'age': 26, 'city': 'New York', 'profession': 'Engineer'}"
+  }
+]

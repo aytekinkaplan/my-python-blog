@@ -6,7 +6,7 @@ from config import Config
 @app.route('/')
 @app.route('/page/<int:page>')
 def index(page=1):
-    posts = BlogPost.query.order_by(BlogPost.date_posted.desc()).paginate(
+    posts = BlogPost.query.order_by(BlogPost.date_posted.asc()).paginate(
         page=page, 
         per_page=Config.POSTS_PER_PAGE,
         error_out=False
