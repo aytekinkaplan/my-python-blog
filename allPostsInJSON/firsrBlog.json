@@ -1,0 +1,8 @@
+[
+  {
+    "title": "Understanding Python Lists",
+    "content": "Python lists are versatile data structures that can hold multiple items. They are ordered, mutable, and allow duplicate elements.",
+    "code": "# Creating a list\nfruits = ['apple', 'banana', 'cherry']\n\n# Accessing elements\nprint(fruits[0])  # Output: apple\n\n# Modifying elements\nfruits[1] = 'blueberry'\nprint(fruits)  # Output: ['apple', 'blueberry', 'cherry']\n\n# Adding elements\nfruits.append('date')\nprint(fruits)  # Output: ['apple', 'blueberry', 'cherry', 'date']",
+    "output": "apple\n['apple', 'blueberry', 'cherry']\n['apple', 'blueberry', 'cherry', 'date']"
+  }
+]

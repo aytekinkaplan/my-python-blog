@@ -4,7 +4,30 @@
   <p class="post-date">
     Published on: {{ post.date_posted.strftime('%d-%m-%Y') }}
   </p>
-  <div class="post-content">{{ post.content }}</div>
+
+  <div class="post-content">{{ post.content | safe }}</div>
+
+  {% if post.code %}
+  <div class="code-block">
+    <h3>Example Code</h3>
+    <pre><code class="language-python">{{ post.code }}</code></pre>
+    <button class="copy-btn" data-clipboard-target=".code-block code">
+      Copy Code
+    </button>
+  </div>
+  {% endif %} {% if post.output %}
+  <div class="output-block">
+    <h3>Output</h3>
+    <pre><code>{{ post.output }}</code></pre>
+  </div>
+  {% endif %}
 </article>
 <a href="{{ url_for('index') }}" class="btn">Go Back</a>
+{% endblock %} {% block scripts %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/highlight.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.8/clipboard.min.js"></script>
+<script>
+  hljs.highlightAll();
+  new ClipboardJS(".copy-btn");
+</script>
 {% endblock %}
