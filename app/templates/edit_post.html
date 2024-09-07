@@ -1,0 +1,71 @@
+{% extends "base.html" %} {% block content %}
+<h1>Edit Post</h1>
+<form method="POST">
+  <div>
+    <label for="title">Title</label>
+    <input
+      type="text"
+      id="title"
+      name="title"
+      value="{{ post.title }}"
+      required
+    />
+  </div>
+  <div>
+    <label for="content">Content</label>
+    <textarea id="content" name="content" required>{{ post.content }}</textarea>
+  </div>
+
+  <h2>Sections</h2>
+  {% for section in post.sections %}
+  <div class="section">
+    <input type="checkbox" name="{{ section.id }}" checked />
+    <input
+      type="text"
+      name="section_title_{{ section.id }}"
+      value="{{ section.title }}"
+      placeholder="Section Title"
+    />
+    <textarea
+      name="section_content_{{ section.id }}"
+      placeholder="Section Content"
+    >
+{{ section.content }}</textarea
+    >
+    <textarea name="section_code_{{ section.id }}" placeholder="Python Code">
+{{ section.code }}</textarea
+    >
+    <textarea name="section_output_{{ section.id }}" placeholder="Output">
+{{ section.output }}</textarea
+    >
+  </div>
+  {% endfor %}
+
+  <div id="new_sections"></div>
+  <button type="button" onclick="addNewSection()">Add New Section</button>
+
+  <button type="submit">Update Post</button>
+</form>
+
+<form
+  action="{{ url_for('delete_post', post_id=post.id) }}"
+  method="POST"
+  onsubmit="return confirm('Are you sure you want to delete this post?');"
+>
+  <button type="submit" class="btn btn-danger">Delete Post</button>
+</form>
+
+<script>
+  function addNewSection() {
+    const newSection = document.createElement("div");
+    newSection.className = "section";
+    newSection.innerHTML = `
+        <input type="text" name="new_section_title" placeholder="New Section Title">
+        <textarea name="new_section_content" placeholder="New Section Content"></textarea>
+        <textarea name="new_section_code" placeholder="New Python Code"></textarea>
+        <textarea name="new_section_output" placeholder="New Output"></textarea>
+    `;
+    document.getElementById("new_sections").appendChild(newSection);
+  }
+</script>
+{% endblock %}

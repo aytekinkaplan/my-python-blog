@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Python Blog</title>
+    <title>{% block title %}Python Blog{% endblock %}</title>
     <link
       href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap"
       rel="stylesheet"
@@ -16,6 +16,7 @@
       rel="stylesheet"
       href="{{ url_for('static', filename='css/style.css') }}"
     />
+    {% block extra_css %}{% endblock %}
   </head>
   <body>
     <header class="main-header">
@@ -25,13 +26,19 @@
           <ul>
             <li><a href="{{ url_for('index') }}">Home</a></li>
             <li><a href="{{ url_for('categories') }}">Categories</a></li>
+            <li><a href="{{ url_for('create_post') }}">Create New Post</a></li>
             <li><a href="{{ url_for('about') }}">About</a></li>
             <li><a href="{{ url_for('contact') }}">Contact</a></li>
           </ul>
         </nav>
       </div>
     </header>
-    <main class="container">{% block content %}{% endblock %}</main>
+    <main class="container">
+      {% with messages = get_flashed_messages(with_categories=true) %} {% if
+      messages %} {% for category, message in messages %}
+      <div class="alert alert-{{ category }}">{{ message }}</div>
+      {% endfor %} {% endif %} {% endwith %} {% block content %}{% endblock %}
+    </main>
     <footer>
       <div class="container">
         <p>&copy; 2024 Python Blog | All rights reserved.</p>

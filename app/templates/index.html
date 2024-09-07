@@ -1,5 +1,8 @@
 {% extends "base.html" %} {% block content %}
 <h1>Latest Blog Posts</h1>
+<a href="{{ url_for('create_post') }}" class="btn btn-primary"
+  >Create New Post</a
+>
 <div class="blog-grid">
   {% for post in posts.items %}
   <div class="blog-card">
@@ -11,10 +14,27 @@
       {{ post.content[:100] }}{% if post.content|length > 100 %}...{% endif %}
     </p>
     <a href="{{ url_for('post', post_id=post.id) }}" class="btn">Read More</a>
+    <a
+      href="{{ url_for('edit_post', post_id=post.id) }}"
+      class="btn btn-secondary"
+      >Edit</a
+    >
+    <form
+      action="{{ url_for('delete_post', post_id=post.id) }}"
+      method="POST"
+      style="display: inline"
+    >
+      <button
+        type="submit"
+        class="btn btn-danger"
+        onclick="return confirm('Are you sure you want to delete this post?');"
+      >
+        Delete
+      </button>
+    </form>
   </div>
   {% endfor %}
 </div>
-
 <div class="pagination">
   {% if posts.has_prev %}
   <a href="{{ url_for('index', page=posts.prev_num) }}" class="btn"
@@ -36,7 +56,6 @@
   >
   {% endif %}
 </div>
-
 <p class="page-info">
   Showing page {{ posts.page }} of {{ posts.pages }} (Total posts: {{
   posts.total }})

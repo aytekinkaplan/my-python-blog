@@ -1,0 +1,95 @@
+{% extends "base.html" %} {% block title %}Create New Blog Post - Python Blog{%
+endblock %} {% block content %}
+<h1 class="page-title">Create New Blog Post</h1>
+<form id="blog-post-form" method="POST" action="{{ url_for('create_post') }}">
+  <div class="form-group">
+    <label for="post-title">Post Title</label>
+    <input
+      type="text"
+      id="post-title"
+      name="title"
+      class="form-control"
+      required
+    />
+  </div>
+
+  <div id="sections-container">
+    <div class="section">
+      <h3>Section 1</h3>
+      <div class="form-group">
+        <label for="section-title-1">Section Title</label>
+        <input
+          type="text"
+          id="section-title-1"
+          name="section_title"
+          class="form-control"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <label for="section-content-1">Content</label>
+        <textarea
+          id="section-content-1"
+          name="section_content"
+          class="form-control"
+          rows="5"
+          required
+        ></textarea>
+      </div>
+      <div class="form-group">
+        <label for="section-code-1">Python Code</label>
+        <textarea
+          id="section-code-1"
+          name="section_code"
+          class="form-control code-area"
+          rows="5"
+        ></textarea>
+      </div>
+      <div class="form-group">
+        <label for="section-output-1">Output</label>
+        <textarea
+          id="section-output-1"
+          name="section_output"
+          class="form-control"
+          rows="3"
+        ></textarea>
+      </div>
+    </div>
+  </div>
+
+  <button type="button" id="add-section" class="btn btn-secondary">
+    Add New Section
+  </button>
+  <button type="submit" class="btn btn-primary">Submit Post</button>
+</form>
+{% endblock %} {% block scripts %}
+<script>
+  let sectionCount = 1;
+
+  document.getElementById("add-section").addEventListener("click", function () {
+    sectionCount++;
+    const newSection = document.createElement("div");
+    newSection.className = "section";
+    newSection.innerHTML = `
+        <h3>Section ${sectionCount}</h3>
+        <div class="form-group">
+            <label for="section-title-${sectionCount}">Section Title</label>
+            <input type="text" id="section-title-${sectionCount}" name="section_title" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="section-content-${sectionCount}">Content</label>
+            <textarea id="section-content-${sectionCount}" name="section_content" class="form-control" rows="5" required></textarea>
+        </div>
+        <div class="form-group">
+            <label for="section-code-${sectionCount}">Python Code</label>
+            <textarea id="section-code-${sectionCount}" name="section_code" class="form-control code-area" rows="5"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="section-output-${sectionCount}">Output</label>
+            <textarea id="section-output-${sectionCount}" name="section_output" class="form-control" rows="3"></textarea>
+        </div>
+    `;
+    document.getElementById("sections-container").appendChild(newSection);
+  });
+</script>
+{% endblock %}

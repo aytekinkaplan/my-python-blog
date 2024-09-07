@@ -1,28 +1,54 @@
-{% extends "base.html" %} {% block content %}
+{% extends "base.html" %} {% block title %}{{ post.title }} - Python Blog{%
+endblock %} {% block content %}
 <article class="post">
   <h1>{{ post.title }}</h1>
   <p class="post-date">
     Published on: {{ post.date_posted.strftime('%d-%m-%Y') }}
   </p>
-
   <div class="post-content">{{ post.content | safe }}</div>
-
-  {% if post.code %}
-  <div class="code-block">
-    <h3>Example Code</h3>
-    <pre><code class="language-python">{{ post.code }}</code></pre>
-    <button class="copy-btn" data-clipboard-target=".code-block code">
-      Copy Code
-    </button>
-  </div>
-  {% endif %} {% if post.output %}
-  <div class="output-block">
-    <h3>Output</h3>
-    <pre><code>{{ post.output }}</code></pre>
-  </div>
-  {% endif %}
+  {% for section in post.sections %}
+  <section class="post-section">
+    <h2>{{ section.title }}</h2>
+    <div class="section-content">{{ section.content | safe }}</div>
+    {% if section.code %}
+    <div class="code-block">
+      <h3>Example Code</h3>
+      <pre><code class="language-python">{{ section.code }}</code></pre>
+      <button class="copy-btn" data-clipboard-target=".code-block code">
+        Copy Code
+      </button>
+    </div>
+    {% endif %} {% if section.output %}
+    <div class="output-block">
+      <h3>Output</h3>
+      <pre><code>{{ section.output }}</code></pre>
+    </div>
+    {% endif %}
+  </section>
+  {% endfor %}
 </article>
-<a href="{{ url_for('index') }}" class="btn">Go Back</a>
+
+<div class="post-actions">
+  <a
+    href="{{ url_for('edit_post', post_id=post.id) }}"
+    class="btn btn-secondary"
+    >Edit Post</a
+  >
+  <form
+    action="{{ url_for('delete_post', post_id=post.id) }}"
+    method="POST"
+    style="display: inline"
+  >
+    <button
+      type="submit"
+      class="btn btn-danger"
+      onclick="return confirm('Are you sure you want to delete this post?');"
+    >
+      Delete Post
+    </button>
+  </form>
+  <a href="{{ url_for('index') }}" class="btn">Go Back</a>
+</div>
 {% endblock %} {% block scripts %}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/highlight.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.8/clipboard.min.js"></script>
