@@ -41,18 +41,37 @@ def contact():
 @app.route('/create_post', methods=['GET', 'POST'])
 def create_post():
     if request.method == 'POST':
-        data = request.json
-        new_post = BlogPost(title=data['title'], content=data['content'])
-        for section in data['sections']:
-            new_post.sections.append(BlogPostSection(
-                title=section['title'],
-                content=section['content'],
-                code=section['code'],
-                output=section['output']
-            ))
+        print(request.form)  # Debug için form verilerini yazdır
+        title = request.form.get('title')
+        content = request.form.get('content')
+        
+        if not title or not content:
+            flash('Title and content are required!', 'error')
+            return redirect(url_for('create_post'))
+        
+        new_post = BlogPost(title=title, content=content)
+        
+        # Sections'ı işle
+        section_titles = request.form.getlist('section_title')
+        section_contents = request.form.getlist('section_content')
+        section_codes = request.form.getlist('section_code')
+        section_outputs = request.form.getlist('section_output')
+        
+        for i in range(len(section_titles)):
+            new_section = BlogPostSection(
+                title=section_titles[i],
+                content=section_contents[i],
+                code=section_codes[i],
+                output=section_outputs[i]
+            )
+            new_post.sections.append(new_section)
+        
         db.session.add(new_post)
         db.session.commit()
-        return jsonify({"message": "Post created successfully", "id": new_post.id})
+        
+        flash('Your post has been created!', 'success')
+        return redirect(url_for('index'))
+    
     return render_template('create_post.html')
 
 @app.route('/post/<int:post_id>/edit', methods=['GET', 'POST'])

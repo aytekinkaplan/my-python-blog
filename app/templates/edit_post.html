@@ -1,50 +1,96 @@
-{% extends "base.html" %} {% block content %}
-<h1>Edit Post</h1>
-<form method="POST">
-  <div>
-    <label for="title">Title</label>
+{% extends "base.html" %} {% block title %}Edit Post - Python Blog{% endblock %}
+{% block content %}
+<h1 class="page-title">Edit Post</h1>
+<form
+  id="edit-post-form"
+  method="POST"
+  action="{{ url_for('edit_post', post_id=post.id) }}"
+>
+  <div class="form-group">
+    <label for="post-title">Title</label>
     <input
       type="text"
-      id="title"
+      id="post-title"
       name="title"
+      class="form-control"
       value="{{ post.title }}"
       required
     />
   </div>
-  <div>
-    <label for="content">Content</label>
-    <textarea id="content" name="content" required>{{ post.content }}</textarea>
-  </div>
 
-  <h2>Sections</h2>
-  {% for section in post.sections %}
-  <div class="section">
-    <input type="checkbox" name="{{ section.id }}" checked />
-    <input
-      type="text"
-      name="section_title_{{ section.id }}"
-      value="{{ section.title }}"
-      placeholder="Section Title"
-    />
+  <div class="form-group">
+    <label for="post-content">Content</label>
     <textarea
-      name="section_content_{{ section.id }}"
-      placeholder="Section Content"
+      id="post-content"
+      name="content"
+      class="form-control"
+      rows="5"
+      required
     >
-{{ section.content }}</textarea
-    >
-    <textarea name="section_code_{{ section.id }}" placeholder="Python Code">
-{{ section.code }}</textarea
-    >
-    <textarea name="section_output_{{ section.id }}" placeholder="Output">
-{{ section.output }}</textarea
+{{ post.content }}</textarea
     >
   </div>
-  {% endfor %}
 
-  <div id="new_sections"></div>
-  <button type="button" onclick="addNewSection()">Add New Section</button>
+  <h2 class="section-title">Sections</h2>
+  <div id="sections-container">
+    {% for section in post.sections %}
+    <div class="section">
+      <h3>Section {{ loop.index }}</h3>
+      <div class="form-group">
+        <label for="section-title-{{ section.id }}">Section Title</label>
+        <input
+          type="text"
+          id="section-title-{{ section.id }}"
+          name="section_title_{{ section.id }}"
+          class="form-control"
+          value="{{ section.title }}"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <label for="section-content-{{ section.id }}">Content</label>
+        <textarea
+          id="section-content-{{ section.id }}"
+          name="section_content_{{ section.id }}"
+          class="form-control"
+          rows="5"
+          required
+        >
+{{ section.content }}</textarea
+        >
+      </div>
+      <div class="form-group">
+        <label for="section-code-{{ section.id }}">Python Code</label>
+        <textarea
+          id="section-code-{{ section.id }}"
+          name="section_code_{{ section.id }}"
+          class="form-control code-area"
+          rows="5"
+        >
+{{ section.code }}</textarea
+        >
+      </div>
+      <div class="form-group">
+        <label for="section-output-{{ section.id }}">Output</label>
+        <textarea
+          id="section-output-{{ section.id }}"
+          name="section_output_{{ section.id }}"
+          class="form-control"
+          rows="3"
+        >
+{{ section.output }}</textarea
+        >
+      </div>
+    </div>
+    {% endfor %}
+  </div>
 
-  <button type="submit">Update Post</button>
+  <div class="form-actions">
+    <button type="button" id="add-section" class="btn btn-secondary">
+      Add New Section
+    </button>
+    <button type="submit" class="btn btn-primary">Update Post</button>
+  </div>
 </form>
 
 <form
@@ -54,18 +100,34 @@
 >
   <button type="submit" class="btn btn-danger">Delete Post</button>
 </form>
-
+{% endblock %} {% block scripts %}
 <script>
-  function addNewSection() {
-    const newSection = document.createElement("div");
-    newSection.className = "section";
-    newSection.innerHTML = `
-        <input type="text" name="new_section_title" placeholder="New Section Title">
-        <textarea name="new_section_content" placeholder="New Section Content"></textarea>
-        <textarea name="new_section_code" placeholder="New Python Code"></textarea>
-        <textarea name="new_section_output" placeholder="New Output"></textarea>
-    `;
-    document.getElementById("new_sections").appendChild(newSection);
-  }
+  let sectionCount = {{ post.sections|length }};
+
+  document.getElementById('add-section').addEventListener('click', function() {
+      sectionCount++;
+      const newSection = document.createElement('div');
+      newSection.className = 'section';
+      newSection.innerHTML = `
+          <h3>Section ${sectionCount}</h3>
+          <div class="form-group">
+              <label for="new-section-title-${sectionCount}">Section Title</label>
+              <input type="text" id="new-section-title-${sectionCount}" name="new_section_title" class="form-control" required>
+          </div>
+          <div class="form-group">
+              <label for="new-section-content-${sectionCount}">Content</label>
+              <textarea id="new-section-content-${sectionCount}" name="new_section_content" class="form-control" rows="5" required></textarea>
+          </div>
+          <div class="form-group">
+              <label for="new-section-code-${sectionCount}">Python Code</label>
+              <textarea id="new-section-code-${sectionCount}" name="new_section_code" class="form-control code-area" rows="5"></textarea>
+          </div>
+          <div class="form-group">
+              <label for="new-section-output-${sectionCount}">Output</label>
+              <textarea id="new-section-output-${sectionCount}" name="new_section_output" class="form-control" rows="3"></textarea>
+          </div>
+      `;
+      document.getElementById('sections-container').appendChild(newSection);
+  });
 </script>
 {% endblock %}
