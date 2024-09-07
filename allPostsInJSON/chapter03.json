@@ -1,0 +1,32 @@
+[
+  {
+    "title": "Introduction to Python Lists",
+    "content": "Python lists are versatile data structures that can hold multiple items. They are ordered, mutable, and allow duplicate elements.",
+    "code": "# Creating a list\nfruits = ['apple', 'banana', 'cherry']\n\n# Accessing elements\nprint(fruits[0])  # Output: apple\n\n# Adding an element\nfruits.append('date')\nprint(fruits)  # Output: ['apple', 'banana', 'cherry', 'date']\n\n# Removing an element\nfruits.remove('banana')\nprint(fruits)  # Output: ['apple', 'cherry', 'date']",
+    "output": "apple\n['apple', 'banana', 'cherry', 'date']\n['apple', 'cherry', 'date']"
+  },
+  {
+    "title": "Python Dictionary Basics",
+    "content": "Dictionaries in Python are unordered collections of key-value pairs. They are mutable and do not allow duplicate keys.",
+    "code": "# Creating a dictionary\nstudent = {\n    'name': 'John Doe',\n    'age': 20,\n    'major': 'Computer Science'\n}\n\n# Accessing values\nprint(student['name'])  # Output: John Doe\n\n# Adding a new key-value pair\nstudent['gpa'] = 3.8\nprint(student)\n\n# Removing a key-value pair\ndel student['age']\nprint(student)",
+    "output": "John Doe\n{'name': 'John Doe', 'age': 20, 'major': 'Computer Science', 'gpa': 3.8}\n{'name': 'John Doe', 'major': 'Computer Science', 'gpa': 3.8}"
+  },
+  {
+    "title": "Python Functions",
+    "content": "Functions in Python are reusable blocks of code that perform a specific task. They help in organizing code and promoting reusability.",
+    "code": "def greet(name):\n    return f'Hello, {name}!'\n\nprint(greet('Alice'))\n\ndef add_numbers(a, b):\n    return a + b\n\nresult = add_numbers(5, 3)\nprint(f'5 + 3 = {result}')",
+    "output": "Hello, Alice!\n5 + 3 = 8"
+  },
+  {
+    "title": "List Comprehensions in Python",
+    "content": "List comprehensions provide a concise way to create lists based on existing lists or other iterable objects.",
+    "code": "# Creating a list of squares\nsquares = [x**2 for x in range(1, 6)]\nprint(squares)\n\n# Filtering even numbers\nnumbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]\neven_numbers = [x for x in numbers if x % 2 == 0]\nprint(even_numbers)",
+    "output": "[1, 4, 9, 16, 25]\n[2, 4, 6, 8, 10]"
+  },
+  {
+    "title": "Exception Handling in Python",
+    "content": "Exception handling in Python allows you to gracefully manage errors and unexpected situations in your code.",
+    "code": "try:\n    x = 10 / 0\nexcept ZeroDivisionError:\n    print('Error: Division by zero!')\n\ntry:\n    number = int(input('Enter a number: '))\n    print(f'You entered: {number}')\nexcept ValueError:\n    print('Error: Invalid input. Please enter a valid number.')",
+    "output": "Error: Division by zero!\nEnter a number: abc\nError: Invalid input. Please enter a valid number."
+  }
+]

@@ -1,6 +1,12 @@
 [
   {
-    "title": "Built in functions",
-    "content": "In Python we have lots of built-in functions. Built-in functions are globally available for your use that mean you can make use of the built-in functions without importing or configuring. Some of the most commonly used Python built-in functions are the following: print(), len(), type(), int(), float(), str(), input(), list(), dict(), min(), max(), sum(), sorted(), open(), file(), help(), and dir(). In the following table you will see an exhaustive list of Python built-in functions taken from <a href=\"https://docs.python.org/3.9/library/functions.html\">python documentation.</a>"
+    "title": "Built-in functions",
+    "content": "In Python, we have lots of built-in functions. Built-in functions are globally available for your use, meaning you can make use of the built-in functions without importing or configuring them. Some of the most commonly used Python built-in functions are the following: print(), len(), type(), int(), float(), str(), input(), list(), dict(), min(), max(), sum(), sorted(), open(), file(), help(), and dir(). In the following table, you will see an exhaustive list of Python built-in functions taken from <a href=\"https://docs.python.org/3.9/library/functions.html\">Python documentation.</a>"
+  },
+  {
+    "title": "Problem: Calculate the Factorial of a Number",
+    "content": "We want to write a Python program that calculates the factorial of a given number. The factorial of a number n is the product of all positive integers less than or equal to n.",
+    "code": "# Function to calculate factorial\ndef factorial(n):\n    if n == 0 or n == 1:\n        return 1  # Base case: factorial of 0 or 1 is 1\n    else:\n        return n * factorial(n - 1)  # Recursive call\n\n# Input: number to calculate factorial\nnumber = 5\nresult = factorial(number)\n\n# Output the result\nprint(f'The factorial of {number} is {result}')",
+    "output": "The factorial of 5 is 120"
   }
 ]
