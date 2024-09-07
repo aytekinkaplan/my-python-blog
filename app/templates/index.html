@@ -1,17 +1,44 @@
 {% extends "base.html" %} {% block content %}
-<h2>Blog Gönderileri</h2>
-{% for post in posts.items %}
-<article>
-  <h3><a href="{{ url_for('post', post_id=post.id) }}">{{ post.title }}</a></h3>
-  <p>{{ post.content[:200] }}...</p>
-  <p>Yayınlanma Tarihi: {{ post.date_posted.strftime('%Y-%m-%d') }}</p>
-</article>
-{% endfor %} {% for page_num in posts.iter_pages(left_edge=1, right_edge=1,
-left_current=1, right_current=2) %} {% if page_num %} {% if posts.page ==
-page_num %}
-<a class="btn current-page" href="{{ url_for('index', page=page_num) }}"
-  >{{ page_num }}</a
->
-{% else %}
-<a class="btn" href="{{ url_for('index', page=page_num) }}">{{ page_num }}</a>
-{% endif %} {% else %} ... {% endif %} {% endfor %} {% endblock %}
+<h1>Latest Blog Posts</h1>
+<div class="blog-grid">
+  {% for post in posts.items %}
+  <div class="blog-card">
+    <h2>
+      <a href="{{ url_for('post', post_id=post.id) }}">{{ post.title }}</a>
+    </h2>
+    <p class="post-date">{{ post.date_posted.strftime('%d %B %Y') }}</p>
+    <p>
+      {{ post.content[:100] }}{% if post.content|length > 100 %}...{% endif %}
+    </p>
+    <a href="{{ url_for('post', post_id=post.id) }}" class="btn">Read More</a>
+  </div>
+  {% endfor %}
+</div>
+
+<div class="pagination">
+  {% if posts.has_prev %}
+  <a href="{{ url_for('index', page=posts.prev_num) }}" class="btn"
+    >&laquo; Previous</a
+  >
+  {% endif %} {% for page_num in posts.iter_pages(left_edge=1, right_edge=1,
+  left_current=2, right_current=2) %} {% if page_num %} {% if posts.page ==
+  page_num %}
+  <a class="btn current-page" href="{{ url_for('index', page=page_num) }}"
+    >{{ page_num }}</a
+  >
+  {% else %}
+  <a class="btn" href="{{ url_for('index', page=page_num) }}">{{ page_num }}</a>
+  {% endif %} {% else %}
+  <span class="ellipsis">...</span>
+  {% endif %} {% endfor %} {% if posts.has_next %}
+  <a href="{{ url_for('index', page=posts.next_num) }}" class="btn"
+    >Next &raquo;</a
+  >
+  {% endif %}
+</div>
+
+<p class="page-info">
+  Showing page {{ posts.page }} of {{ posts.pages }} (Total posts: {{
+  posts.total }})
+</p>
+{% endblock %}
