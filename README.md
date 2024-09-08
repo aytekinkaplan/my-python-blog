@@ -1,4 +1,4 @@
-```markdown
+````markdown
 # Python Blog
 
 ![Python Blog Homepage](imagesofproject/homepage.png)
@@ -48,42 +48,25 @@ A dynamic blog application built with Flask, featuring user authentication, blog
 
 ## Installation
 
-1. Clone the repository:
-```
-
+```bash
+# Clone the repository
 git clone https://github.com/aytekinkaplan/my-python-blog.git
 cd my-python-blog
 
-```
-
-2. Create a virtual environment:
-```
-
+# Create a virtual environment
 python -m venv venv
 source venv/bin/activate # On Windows use `venv\Scripts\activate`
 
-```
-
-3. Install the required packages:
-```
-
+# Install the required packages
 pip install -r requirements.txt
 
-```
-
-4. Set up the database:
-```
-
+# Set up the database
 flask db upgrade
 
-```
-
-5. Run the application:
-```
-
+# Run the application
 flask run
-
 ```
+````
 
 ## Usage
 
@@ -96,8 +79,7 @@ After starting the server, navigate to `http://localhost:5000` in your web brows
 
 ## Project Structure
 
-```
-
+```plaintext
 my-python-blog/
 │
 ├── app/
@@ -105,7 +87,7 @@ my-python-blog/
 │ │ ├── css/
 │ │ └── js/
 │ ├── templates/
-│ ├── **init**.py
+│ ├── __init__.py
 │ ├── models.py
 │ └── routes.py
 │
@@ -115,15 +97,16 @@ my-python-blog/
 ├── config.py
 ├── requirements.txt
 └── run.py
-
 ```
 
 ## Screenshots
 
 ### Login Page
+
 ![Login Page](imagesofproject/login.png)
 
 ### Blog Post
+
 ![Blog Post](imagesofproject/post.png)
 
 ## Contributing
@@ -133,4 +116,7 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+```
+
 ```
