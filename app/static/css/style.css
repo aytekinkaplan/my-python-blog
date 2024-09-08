@@ -4,6 +4,10 @@
   --background-color: #f0f0f0;
   --text-color: #333;
   --nav-hover-color: #1d4166;
+  --border-color: #ddd;
+  --light-background: #f4f4f4;
+  --form-background: white;
+  --shadow-color: rgba(0, 0, 0, 0.1);
 }
 
 body {
@@ -26,7 +30,7 @@ body {
 .main-header {
   background-color: var(--primary-color);
   padding: 10px 0;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 5px var(--shadow-color);
 }
 
 .main-header .container {
@@ -90,7 +94,7 @@ h6 {
 .blog-card {
   background: white;
   border-radius: 8px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 5px var(--shadow-color);
   padding: 20px;
   transition: transform 0.3s ease;
 }
@@ -190,40 +194,31 @@ footer {
   color: var(--primary-color);
 }
 
-/* About Page */
-.about-content {
-  background-color: white;
+/* About Page and Contact Form */
+.section {
+  background-color: var(--form-background);
   padding: 20px;
   border-radius: 5px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-/* Contact Page */
-.contact-form {
-  background-color: white;
-  padding: 20px;
-  border-radius: 5px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 5px var(--shadow-color);
 }
 
 .form-group {
   margin-bottom: 20px;
 }
 
-.form-group label {
-  display: block;
-  margin-bottom: 5px;
-}
-
-.form-group input,
-.form-group textarea {
+.form-control {
   width: 100%;
   padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 3px;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  font-size: 16px;
 }
 
-.form-group textarea {
+textarea.form-control {
+  min-height: 100px;
+}
+
+.contact-form textarea.form-control {
   height: 150px;
 }
 
@@ -247,10 +242,11 @@ footer {
   }
 }
 
+/* Code Blocks and Output */
 .code-block,
 .output-block {
-  background-color: #f4f4f4;
-  border: 1px solid #ddd;
+  background-color: var(--light-background);
+  border: 1px solid var(--border-color);
   border-radius: 4px;
   padding: 15px;
   margin: 15px 0;
@@ -268,7 +264,7 @@ footer {
   position: absolute;
   top: 5px;
   right: 5px;
-  background-color: #3776ab;
+  background-color: var(--primary-color);
   color: white;
   border: none;
   border-radius: 4px;
@@ -281,7 +277,7 @@ footer {
   background-color: #2c5d8f;
 }
 
-/* Yeni eklenen stiller */
+/* Post Actions */
 .post-actions {
   margin-top: 20px;
   padding-top: 20px;
@@ -292,17 +288,103 @@ footer {
   margin-right: 10px;
 }
 
-/* Create New Post Page Styles */
-.page-title {
-  margin-bottom: 30px;
-  color: var(--primary-color);
+/* Login Form */
+.login-container {
+  max-width: 400px;
+  margin: 50px auto;
+  padding: 20px;
+  background-color: var(--form-background);
+  border-radius: 8px;
+  box-shadow: 0 0 10px var(--shadow-color);
 }
 
-.form-group {
+.login-title {
+  text-align: center;
+  color: var(--primary-color);
   margin-bottom: 20px;
 }
 
-.form-control {
+.login-form .form-group {
+  margin-bottom: 15px;
+}
+
+.login-form label {
+  display: block;
+  margin-bottom: 5px;
+  color: var(--text-color);
+}
+
+.login-form input[type="text"],
+.login-form input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.login-form .btn-primary {
+  width: 100%;
+  padding: 10px;
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.login-form .btn-primary:hover {
+  background-color: #2c5d8f;
+}
+
+.login-links {
+  text-align: center;
+  margin-top: 15px;
+}
+
+.login-links a {
+  color: var(--primary-color);
+  text-decoration: none;
+}
+
+.login-links a:hover {
+  text-decoration: underline;
+}
+
+.login-links .separator {
+  margin: 0 10px;
+  color: #999;
+}
+.contact-container {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.contact-container h1 {
+  color: #3776ab;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.contact-form .form-group {
+  margin-bottom: 20px;
+}
+
+.contact-form label {
+  display: block;
+  margin-bottom: 5px;
+  color: #333;
+}
+
+.contact-form input[type="text"],
+.contact-form input[type="email"],
+.contact-form textarea {
   width: 100%;
   padding: 10px;
   border: 1px solid #ddd;
@@ -310,68 +392,53 @@ footer {
   font-size: 16px;
 }
 
-textarea.form-control {
-  min-height: 100px;
+.contact-form textarea {
+  resize: vertical;
 }
 
-.section {
-  background-color: #f9f9f9;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  padding: 20px;
-  margin-bottom: 20px;
-}
-
-.section h3 {
-  margin-top: 0;
-  margin-bottom: 20px;
-  color: var(--primary-color);
-}
-
-.btn {
+.contact-form .btn-primary {
+  background-color: #3776ab;
+  color: white;
   padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
   font-size: 16px;
   cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
-.btn-secondary {
-  background-color: #6c757d;
-  color: white;
-  border: none;
+.contact-form .btn-primary:hover {
+  background-color: #2c5d8f;
+}
+.login-container {
+  max-width: 400px;
+  margin: 50px auto;
+  padding: 30px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
 }
 
-.btn-primary {
-  background-color: var(--primary-color);
-  color: white;
-  border: none;
-}
-
-#add-section {
-  margin-right: 10px;
-}
-
-.code-area {
-  font-family: monospace;
-  background-color: #f4f4f4;
-}
-
-/* Edit Post Page Styles */
-.page-title {
-  margin-bottom: 30px;
-  color: var(--primary-color);
-}
-
-.section-title {
-  margin-top: 40px;
+.login-title {
+  color: #3776ab;
+  font-size: 24px;
   margin-bottom: 20px;
-  color: var(--primary-color);
+  text-align: center;
 }
 
-.form-group {
+.login-form .form-group {
   margin-bottom: 20px;
 }
 
-.form-control {
+.login-form label {
+  display: block;
+  margin-bottom: 5px;
+  color: #333;
+  font-weight: bold;
+}
+
+.login-form input[type="text"],
+.login-form input[type="password"] {
   width: 100%;
   padding: 10px;
   border: 1px solid #ddd;
@@ -379,55 +446,386 @@ textarea.form-control {
   font-size: 16px;
 }
 
-textarea.form-control {
-  min-height: 100px;
+.login-form .btn-primary {
+  width: 100%;
+  padding: 12px;
+  background-color: #3776ab;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
-.section {
-  background-color: #f9f9f9;
+.login-form .btn-primary:hover {
+  background-color: #2c5d8f;
+}
+
+.login-links {
+  margin-top: 20px;
+  text-align: center;
+  font-size: 14px;
+}
+
+.login-links a {
+  color: #3776ab;
+  text-decoration: none;
+}
+
+.login-links a:hover {
+  text-decoration: underline;
+}
+
+.login-links .separator {
+  margin: 0 10px;
+  color: #999;
+}
+.contact-container {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 30px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+.page-title {
+  color: #3776ab;
+  font-size: 24px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.contact-form .form-group {
+  margin-bottom: 20px;
+}
+
+.contact-form label {
+  display: block;
+  margin-bottom: 5px;
+  color: #333;
+  font-weight: bold;
+}
+
+.contact-form input[type="text"],
+.contact-form input[type="email"],
+.contact-form textarea {
+  width: 100%;
+  padding: 10px;
   border: 1px solid #ddd;
   border-radius: 4px;
+  font-size: 16px;
+}
+
+.contact-form textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.btn-primary {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  background-color: #3776ab;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+  background-color: #2c5d8f;
+}
+/* Responsive navigation */
+.nav-toggle {
+  display: none;
+}
+
+.nav-toggle-label {
+  display: none;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 768px) {
+  .main-nav ul {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: var(--primary-color);
+    padding: 20px 0;
+  }
+
+  .nav-toggle:checked ~ ul {
+    display: flex;
+  }
+
+  .nav-toggle-label {
+    display: block;
+    padding: 1em;
+    font-size: 1.2em;
+    color: white;
+  }
+
+  .nav-toggle-label span,
+  .nav-toggle-label span::before,
+  .nav-toggle-label span::after {
+    display: block;
+    background: white;
+    height: 2px;
+    width: 2em;
+    position: relative;
+  }
+
+  .nav-toggle-label span::before,
+  .nav-toggle-label span::after {
+    content: "";
+    position: absolute;
+  }
+
+  .nav-toggle-label span::before {
+    bottom: 7px;
+  }
+
+  .nav-toggle-label span::after {
+    top: 7px;
+  }
+}
+
+/* Alert styles */
+.alert {
+  padding: 15px;
+  margin-bottom: 20px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+}
+
+.alert-success {
+  color: #155724;
+  background-color: #d4edda;
+  border-color: #c3e6cb;
+}
+
+.alert-error {
+  color: #721c24;
+  background-color: #f8d7da;
+  border-color: #f5c6cb;
+}
+.blog-container {
+  max-width: 1200px;
+  margin: 0 auto;
   padding: 20px;
+}
+
+.page-title {
+  color: #3776ab;
+  font-size: 2.5em;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.blog-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 30px;
+}
+
+.blog-card {
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  transition: transform 0.3s ease;
+}
+
+.blog-card:hover {
+  transform: translateY(-5px);
+}
+
+.blog-card-title {
+  color: #3776ab;
+  font-size: 1.5em;
+  margin-bottom: 10px;
+}
+
+.blog-card-date {
+  color: #666;
+  font-size: 0.9em;
+  margin-bottom: 10px;
+}
+
+.blog-card-excerpt {
+  color: #333;
+  margin-bottom: 15px;
+}
+
+.read-more-btn,
+.create-post-btn {
+  display: inline-block;
+  background-color: #3776ab;
+  color: white;
+  padding: 10px 15px;
+  border-radius: 5px;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.read-more-btn:hover,
+.create-post-btn:hover {
+  background-color: #2c5d8f;
+}
+
+.create-post-btn {
+  display: block;
+  width: 200px;
+  margin: 30px auto;
+  text-align: center;
+}
+
+.no-posts-message {
+  text-align: center;
+  color: #666;
+  font-style: italic;
+  margin: 50px 0;
+}
+
+.pagination {
+  text-align: center;
+  margin-top: 30px;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .blog-grid {
+    grid-template-columns: 1fr;
+  }
+}
+.blog-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.page-title {
+  color: #3776ab;
+  font-size: 2.5em;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.blog-header {
+  display: flex;
+  justify-content: flex-end;
   margin-bottom: 20px;
 }
 
-.section h3 {
-  margin-top: 0;
-  margin-bottom: 20px;
-  color: var(--primary-color);
+.blog-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.blog-card {
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  transition: transform 0.3s ease;
+}
+
+.blog-card:hover {
+  transform: translateY(-5px);
+}
+
+.blog-card-title a {
+  color: #3776ab;
+  text-decoration: none;
+}
+
+.post-date {
+  color: #666;
+  font-size: 0.9em;
+  margin-bottom: 10px;
+}
+
+.blog-card-excerpt {
+  color: #333;
+  margin-bottom: 15px;
+}
+
+.blog-card-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .btn {
-  padding: 10px 20px;
-  font-size: 16px;
-  cursor: pointer;
-  margin-right: 10px;
+  padding: 8px 15px;
+  border-radius: 4px;
+  text-decoration: none;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+}
+
+.btn-primary {
+  background-color: #3776ab;
+  color: white;
 }
 
 .btn-secondary {
   background-color: #6c757d;
   color: white;
-  border: none;
-}
-
-.btn-primary {
-  background-color: var(--primary-color);
-  color: white;
-  border: none;
 }
 
 .btn-danger {
   background-color: #dc3545;
   color: white;
-  border: none;
 }
 
-.form-actions {
+.btn-read {
+  background-color: #28a745;
+  color: white;
+}
+
+.inline-form {
+  display: inline;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
   margin-top: 30px;
-  margin-bottom: 20px;
 }
 
-.code-area {
-  font-family: monospace;
-  background-color: #f4f4f4;
+.pagination .btn {
+  margin: 0 5px;
+}
+
+.current-page {
+  background-color: #3776ab;
+  color: white;
+}
+
+.page-info {
+  text-align: center;
+  margin-top: 20px;
+  color: #666;
+}
+
+.no-posts-message {
+  text-align: center;
+  color: #666;
+  font-style: italic;
+  margin: 50px 0;
+}
+
+@media (max-width: 768px) {
+  .blog-grid {
+    grid-template-columns: 1fr;
+  }
 }
